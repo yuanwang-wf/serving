@@ -137,7 +137,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   test_data_set = mnist_input_data.read_data_sets(work_dir).test
   host, port = hostport.split(':')
   creds = grpc.ssl_channel_credentials(open('roots.pem').read())
-  channel = implementations.secure_channel(host, port, creds)
+  channel = implementations.secure_channel(host, int(port), creds)
   stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
   result_counter = _ResultCounter(num_tests, concurrency)
   for _ in range(num_tests):
