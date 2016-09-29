@@ -14,7 +14,6 @@ import sys
 import threading
 
 # This is a placeholder for a Google-internal import.
-import grpc
 from grpc.beta import implementations
 import numpy
 import tensorflow as tf
@@ -128,8 +127,7 @@ def do_inference():
   """
   test_data_set = mnist_input_data.read_data_sets(work_dir).test
   host, port = hostport.split(':')
-  creds = grpc.ssl_channel_credentials(open('roots.pem').read())
-  channel = implementations.secure_channel(host, int(port), creds)
+  channel = implementations.insecure_channel(host, int(port))
   stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
   result_counter = _ResultCounter(1, concurrency)
 
@@ -145,10 +143,9 @@ def do_inference():
   return result_counter.get_error_rate()
 
 
-def main(_):
-  app.run(host='0.0.0.0', port=8888)
-
-
 if __name__ == '__main__':
-  tf.app.run()
-  app.run(host='0.0.0.0', port=8888)
+  try:
+    tf.app.run()
+    app.run(host='0.0.0.0', port=8888, debug=True)
+  except Exception:
+    pass
