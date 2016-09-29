@@ -9,7 +9,7 @@ Typical usage example:
 
     mnist_client.py --server=localhost:9000
 """
-
+import logging
 import sys
 import threading
 
@@ -147,5 +147,6 @@ if __name__ == '__main__':
   try:
     tf.app.run()
     app.run(host='0.0.0.0', port=8888, debug=True)
-  except Exception:
+  except Exception as e:
+    logging.error(e)
     pass
