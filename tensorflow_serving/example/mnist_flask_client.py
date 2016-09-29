@@ -146,7 +146,7 @@ def do_inference():
 def main(_):
   print("invoked")
   while True:
-      print("hi main")
+    pass
 
 
 
