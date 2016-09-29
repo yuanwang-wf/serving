@@ -56,6 +56,20 @@ py_binary(
 )
 
 py_binary(
+    name = "mnist_flask_client",
+    srcs = [
+        "mnist_flask_client.py",
+    ],
+    deps = [
+        ":mnist_input_data",
+        "//tensorflow_serving/apis:predict_proto_py_pb2",
+        "//tensorflow_serving/apis:prediction_service_proto_py_pb2",
+        "@org_tensorflow//tensorflow:tensorflow_py",
+    ],
+)
+
+
+py_binary(
     name = "inception_export",
     srcs = [
         "inception_export.py",
