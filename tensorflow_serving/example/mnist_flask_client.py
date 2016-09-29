@@ -143,6 +143,13 @@ def do_inference():
   return result_counter.get_error_rate()
 
 
+def main(_):
+  print("invoked")
+  while True:
+      print("hi main")
+
+
+
 if __name__ == '__main__':
   try:
     tf.app.run()
