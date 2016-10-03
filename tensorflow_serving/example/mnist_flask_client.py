@@ -1,4 +1,4 @@
-# !/usr/bin/env python2.7
+#!/usr/bin/env python2.7
 
 """A client that talks to tensorflow_model_server loaded with mnist model.
 
